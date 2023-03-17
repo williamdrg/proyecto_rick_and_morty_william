@@ -18,23 +18,6 @@ const ResidentInfo = ({url}) => {
 
       const episode = resident.episode?.length
 
-    //   const [fontSize, setFontSize] = useState(32); // Tamaño de fuente inicial
-
-    //   useEffect(() => {
-    //     const maxLength1 = 30; // Longitud máxima permitida para el tamaño 16px
-    //     const maxLength2 = 22; // Longitud máxima permitida para el tamaño 20px
-    
-    //     let newFontSize = 32; // Tamaño de fuente inicial
-    
-    //     if (resident.name?.length > maxLength1) {
-    //       newFontSize = 19;
-    //     } else if (resident.name?.length > maxLength2) {
-    //       newFontSize = 26;
-    //     }
-    
-    //     setFontSize(newFontSize); // Actualizamos el tamaño de la fuente
-    //   }, [resident.name]);
-    
 
       return (
         
@@ -101,12 +84,3 @@ const ResidentInfo = ({url}) => {
 
 export default ResidentInfo;
 
-{/* <span className="t_over"></span>
-<span className="t_over"></span>
-<span className="t_over"></span>
-<span className="t_over"></span>
-<span className="t_over"></span>
-<span className="t_over"></span>
-<span className="t_over"></span>
-<span className="t_over"></span>
-<span className="t_over"></span>  */}

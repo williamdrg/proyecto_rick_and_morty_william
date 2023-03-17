@@ -5,12 +5,12 @@ import { useState } from "react";
 const Search = ({setSearch, modal, load}) => {
 
     const [text, setText] = useState('')
-    // const [inputValue, setInputValue] = useState('');
     const [suggestions, setSuggestions] = useState([])
-
+    
     const onSubmit = e => {
         e.preventDefault();
-      }
+    }
+    
 
     const handleInputChange = async (event) => {
         setText(event.target.value)
@@ -33,11 +33,13 @@ const Search = ({setSearch, modal, load}) => {
         axios
         .get(`https://rickandmortyapi.com/api/location/?name=${text}`)
         .then(resp => {
+            load(true)
             setSearch(resp.data.results[0])
-                load(false)
+            load(false)    
             })
         .catch(modal,
-            load(false))
+            load(false)
+            )
         setText('')   
     }
 
