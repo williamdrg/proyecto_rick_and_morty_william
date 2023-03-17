@@ -60,7 +60,9 @@ function App() {
   
     <div className="cardContainer">
       {fetchedData.residents?.map(residentUrl => (
-      <ResidentInfo key={residentUrl} url = {residentUrl}/>))}
+      <ResidentInfo 
+      key={residentUrl} 
+      url = {residentUrl}/>))}
     </div>
 
     <div className={modal ? "container__modal" : "close__modal"}>
@@ -68,7 +70,7 @@ function App() {
           <div className='modalImg'>
             <img src="/logomodal.svg" alt="warning image" />
           </div>
-          <p>El ID que esta ingresando no existe, por favor ingrese un ID entre 1 y 126.</p>
+          <p>Por favor ingrese un nombre de ubicación valido</p>
           <button className='custom-btn btn-1' 
             onClick={() => setModal(!modal)}>
             Cerrar

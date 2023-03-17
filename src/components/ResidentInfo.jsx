@@ -17,6 +17,25 @@ const ResidentInfo = ({url}) => {
 
 
       const episode = resident.episode?.length
+
+      const [fontSize, setFontSize] = useState(32); // Tamaño de fuente inicial
+
+      useEffect(() => {
+        const maxLength1 = 30; // Longitud máxima permitida para el tamaño 16px
+        const maxLength2 = 22; // Longitud máxima permitida para el tamaño 20px
+    
+        let newFontSize = 32; // Tamaño de fuente inicial
+    
+        if (resident.name?.length > maxLength1) {
+          newFontSize = 19;
+        } else if (resident.name?.length > maxLength2) {
+          newFontSize = 26;
+        }
+    
+        setFontSize(newFontSize); // Actualizamos el tamaño de la fuente
+      }, [resident.name]);
+    
+
       return (
 
         <div className="cards">
@@ -24,7 +43,7 @@ const ResidentInfo = ({url}) => {
                 <div className="circle"><img src={resident.image} alt="image character" /></div>
                     <div className="box_1">
                         <div className="box_2">
-                        <h3 className="names">{resident.name}</h3>
+                        <h3 className="names" style={{ fontSize: `${fontSize}px` }}>{resident.name}</h3>
                         </div>
                         <div className="box_3"></div>
                         <div className="box_4">

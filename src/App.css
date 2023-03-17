@@ -4,6 +4,7 @@
   --font-Paragraph: 20px;
 }
 
+
 .background_img {
   background-color: black;
   width: 100vw;
@@ -23,6 +24,7 @@
   width: 100vw;
   height: 33vh;
 }
+
 
 .text-center {
     text-align: center;
@@ -76,6 +78,9 @@
   box-shadow: inset 2px 5px 10px rgba(0,0,0,0.3);
   transition: 300ms ease-in-out;
   width: 100%;
+  position: relative;
+  z-index: 7;
+  font-weight: bold;
 }
 
 .input::placeholder {
@@ -104,7 +109,8 @@
   font-weight: 500;
   padding: 6px;
   -webkit-transition: all .3s;
-  transition: all .3s;  
+  transition: all .3s; 
+  z-index: 7; 
 }
 
 
@@ -115,7 +121,37 @@
   background-color: #893446;
   color: white;
 }
- 
+ /* listado de ubicaciones */
+
+ .list_ubication {
+  list-style: none;
+  background-color: #938686;
+  border-radius: 30px;
+  padding: 55px 0px 10px 10px;
+  margin-top: -50px;
+  position: absolute;
+  width: 100%;
+  z-index: 6;
+
+  /* font-weight: 600; */
+  line-height: 2;
+  border: 3px solid #893446;
+  cursor: pointer
+ }
+
+ .list_ubication li{
+  padding-left: 8px;
+  margin-left: 5px;
+  user-select: none;
+ }
+
+ .list_ubication li:hover {
+  background-color: #ede188;
+  border-radius: 30px;
+  width: 95%;
+  scale: 1.05;
+ }
+
 /* información de la locación */
 
 .location_cont {
@@ -126,7 +162,6 @@
   box-shadow: 6px 6px 20px #3b3939;
   border-radius: 15px;
   position: relative;
-  z-index: 1;
 }
 
 .location_cont li {
@@ -314,6 +349,7 @@
   background-image: url(/public/fondo/modal.png);
   width: 320px;
   height: 290px;
+  border-radius: 15px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -570,6 +606,22 @@
   .input {
     padding: 10px;
   }
+
+  .list_ubication {
+    list-style: none;
+    background-color: #938686;
+    border-radius: 30px;
+    padding: 50px 0px 10px 10px;
+    margin-top: -43px;
+    position: absolute;
+    width: 100%;
+    z-index: 6;
+  
+    /* font-weight: 600; */
+    line-height: 2;
+    border: 3px solid #893446;
+    cursor: pointer
+   }
 }
 
 @media screen and (max-width: 375px) {
