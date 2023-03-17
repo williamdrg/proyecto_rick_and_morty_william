@@ -197,11 +197,11 @@
 
 }
 
-.cards:hover {
-  /* filter: brightness(1.15);
+/* .cards:hover {
+  filter: brightness(1.15);
   transition: all 0.3s linear;
-  transform: scale(1.1); */
-}
+  transform: scale(1.1);
+} */
 
 
 .circle {
@@ -295,6 +295,7 @@
   font-size: var(--font-items);
   color: #893446;
   font-weight: 500;
+  
 }
 
 .box_4 span {
@@ -322,8 +323,6 @@
   display: flex;
   align-items: center;
   justify-content:space-around;
-  font-size: 40px;
-  text-transform: uppercase;
   transition: all 0.6s ease-out;
   transform: rotateX(0deg) rotateY(0deg);
   perspective: 1000px;
@@ -720,12 +719,20 @@
     margin: 10px 0px 0px 0px;
     width: 90%;
   }
-
-
   .container_residentInfo {
     width: 310px;
     height: 357px;
   }
+
+  .box_tex {
+    font-size: 12px;
+    width: 265px; 
+  }
+  
+  .box_4 span {
+    font-size: 14px;
+  }
+
 }
 
 
