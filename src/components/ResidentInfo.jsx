@@ -18,32 +18,44 @@ const ResidentInfo = ({url}) => {
 
       const episode = resident.episode?.length
 
-      const [fontSize, setFontSize] = useState(32); // Tamaño de fuente inicial
+    //   const [fontSize, setFontSize] = useState(32); // Tamaño de fuente inicial
 
-      useEffect(() => {
-        const maxLength1 = 30; // Longitud máxima permitida para el tamaño 16px
-        const maxLength2 = 22; // Longitud máxima permitida para el tamaño 20px
+    //   useEffect(() => {
+    //     const maxLength1 = 30; // Longitud máxima permitida para el tamaño 16px
+    //     const maxLength2 = 22; // Longitud máxima permitida para el tamaño 20px
     
-        let newFontSize = 32; // Tamaño de fuente inicial
+    //     let newFontSize = 32; // Tamaño de fuente inicial
     
-        if (resident.name?.length > maxLength1) {
-          newFontSize = 19;
-        } else if (resident.name?.length > maxLength2) {
-          newFontSize = 26;
-        }
+    //     if (resident.name?.length > maxLength1) {
+    //       newFontSize = 19;
+    //     } else if (resident.name?.length > maxLength2) {
+    //       newFontSize = 26;
+    //     }
     
-        setFontSize(newFontSize); // Actualizamos el tamaño de la fuente
-      }, [resident.name]);
+    //     setFontSize(newFontSize); // Actualizamos el tamaño de la fuente
+    //   }, [resident.name]);
     
 
       return (
+        
+            <div class="container_residentInfo">
 
-        <div className="cards">
-            
+                <span class="effect_3d"></span>
+                <span class="effect_3d"></span>
+                <span class="effect_3d"></span>
+                <span class="effect_3d"></span>
+                <span class="effect_3d"></span>
+                <span class="effect_3d"></span>
+                <span class="effect_3d"></span>
+                <span class="effect_3d"></span>
+                <span class="effect_3d"></span>
+
+                <div class="box_residentInfo">
+                <div className="cards">
                 <div className="circle"><img src={resident.image} alt="image character" /></div>
                     <div className="box_1">
                         <div className="box_2">
-                        <h3 className="names" style={{ fontSize: `${fontSize}px` }}>{resident.name}</h3>
+                        <h3 className="names">{resident.name}</h3>
                         </div>
                         <div className="box_3"></div>
                         <div className="box_4">
@@ -76,7 +88,11 @@ const ResidentInfo = ({url}) => {
                             
                         </div>
                     </div> 
+            </div> 
+                
                 </div>
+            </div>
+
     );
 
  
@@ -85,4 +101,12 @@ const ResidentInfo = ({url}) => {
 
 export default ResidentInfo;
 
- 
+{/* <span className="t_over"></span>
+<span className="t_over"></span>
+<span className="t_over"></span>
+<span className="t_over"></span>
+<span className="t_over"></span>
+<span className="t_over"></span>
+<span className="t_over"></span>
+<span className="t_over"></span>
+<span className="t_over"></span>  */}
