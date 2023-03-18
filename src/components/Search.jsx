@@ -18,7 +18,7 @@ const Search = ({setSearch, modal, load}) => {
     const handleClickOutside = (event) => {
     if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
         setSuggestions([]);
-    }
+        }
     }
     
     const onSubmit = e => {

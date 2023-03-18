@@ -77,7 +77,7 @@ function App() {
           <div className='modalImg'>
             <img src="/logomodal.svg" alt="warning image" />
           </div>
-          <p>Por favor ingrese un nombre de ubicación valido</p>
+          <p>Por favor ingrese un nombre de ubicación válido</p>
           <button className='custom-btn btn-1' 
             onClick={() => setModal(!modal)}>
             Cerrar

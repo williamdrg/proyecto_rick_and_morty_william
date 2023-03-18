@@ -193,14 +193,18 @@
   margin-left: 2%;
   margin-top: 2rem;
   position: relative;
-  transition: filter 0.5 ease;
+  /* transition: filter 0.5 ease; */
 
+  /* transition: transform 2s ease;  */
 }
 
 /* .cards:hover {
   filter: brightness(1.15);
   transition: all 0.3s linear;
-  transform: scale(1.1);
+  transform: scale(1.05);
+  
+  transform: rotate3d(0, 1, 0, 360deg);
+  transition: transform 2s ease;
 } */
 
 
@@ -334,8 +338,8 @@
   height: 33.33%;
   position: absolute;
   z-index: 10;
-  /* border: 2px solid black; */
 }
+
 
 .effect_3d:nth-child(1) { left: 0; top: 0;}
 .effect_3d:nth-child(2) { left: 33.33%; top: 0;}
@@ -356,6 +360,7 @@
 .effect_3d:nth-child(7):hover ~ .box_residentInfo {transform: rotateX(20deg) rotateY(20deg)}
 .effect_3d:nth-child(8):hover ~ .box_residentInfo {transform: rotateX(20deg) rotateY(0deg)}
 .effect_3d:nth-child(9):hover ~ .box_residentInfo {transform: rotateX(20deg) rotateY(-20deg)}
+
 
 
 /***************/
