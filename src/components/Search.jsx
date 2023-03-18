@@ -1,11 +1,25 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 
 const Search = ({setSearch, modal, load}) => {
 
     const [text, setText] = useState('')
     const [suggestions, setSuggestions] = useState([])
+    const wrapperRef = useRef(null)
+
+    useEffect(() => {
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+          document.removeEventListener("mousedown", handleClickOutside);
+        }
+      }, [])
+
+    const handleClickOutside = (event) => {
+    if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
+        setSuggestions([]);
+    }
+    }
     
     const onSubmit = e => {
         e.preventDefault();
@@ -18,9 +32,8 @@ const Search = ({setSearch, modal, load}) => {
             const response = await axios.get(`https://rickandmortyapi.com/api/location/?name=${text}`)
             const results = response.data.results.map((location) => location.name)
             setSuggestions(results)
-            } catch(modal) {
-                console.log(error)
-            }      
+            } 
+            catch(modal) { modal}      
         }
 
      const handleSuggestionClick = (suggestion) => {
@@ -46,7 +59,7 @@ const Search = ({setSearch, modal, load}) => {
 
         return (
            <form onSubmit={onSubmit}>
-                <div className="search__container">
+                <div className="search__container" ref={wrapperRef}>
                     <input 
                         onChange={handleInputChange}
                         placeholder="Buscar"
@@ -61,7 +74,7 @@ const Search = ({setSearch, modal, load}) => {
                             <li key={suggestion}  
                                 onClick={() => handleSuggestionClick(suggestion)}
                             >
-                                {suggestion} 
+                                   {suggestion} 
                             </li>
                             ))}
                         </ul>
