@@ -23,9 +23,9 @@ function App() {
 
   }, [])
 
-  const itemsPerPage = 10;
+  const itemsPerPage = 8;
   const [ paginatedData, totalPages ] = usePagination(searchResults.residents || characters.residents, pageNumber, itemsPerPage);
-
+  const hasResidents = (searchResults.residents && searchResults.residents.length > 0) || (characters.residents && characters.residents.length > 0);
   const charactersToShow = searchResults.residents ? searchResults : characters;
 
   const handleError = (message) => {
@@ -66,11 +66,15 @@ function App() {
         imageSrc="/logomodal.svg"
       />
 
-      <Pagination 
-        currentPage={pageNumber} 
-        totalPages={totalPages} 
-        onPageChange={setPageNumber} 
-      />
+      {
+        hasResidents && (
+          <Pagination 
+            currentPage={pageNumber} 
+            totalPages={totalPages} 
+            onPageChange={setPageNumber} 
+          />
+        )
+      }
     </div>
   )
 }
