@@ -1,44 +1,38 @@
 import './App.css'
-import axios from 'axios'
 import { useState, useEffect } from 'react'
 import Search from "./components/Search"
 import ResidentInfo from "./components/ResidentInfo"
 import Location from './components/Location'
 import Loader from './components/Loader'
-
-
-
+import useFetch from './hooks/useFetch'
+import Modal from './components/Modal';
+import usePagination from './hooks/usePagination';
+import Pagination from './components/Pagination'
 
 function App() {
-  const [fetchedData, SetFetchedData] = useState({})
   const [modal, setModal] = useState(false)
-  const [loading, setLoading] = useState(true)
+  const [errorMessage, setErrorMessage] = useState("");
   const [pageNumber, setPageNumber] = useState(1)
- 
-
-  const api = `https://rickandmortyapi.com/api/location/${Math.floor(Math.random()*126)+1}`
- 
-  
-  useEffect(()=>{
-
-    axios
-        .get(api)
-        .then(resp => {
-          SetFetchedData(resp.data)
-          setTimeout(() => {
-            setLoading(false)
-          },500);
-          })
-        .catch(err => console.log(err))
-  },[])
-
-  const itemsPerPage = 10
-
-  const startIndex = (pageNumber - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-
+  const [searchResults, setSearchResults] = useState({});
+  const [characters, getCharacters, loading, setLoading, error ] = useFetch()
 
   
+  useEffect(() => {
+    const url = `https://rickandmortyapi.com/api/location/${Math.floor(Math.random()*126)+1}`
+    getCharacters(url, handleError)
+
+  }, [])
+
+  const itemsPerPage = 10;
+  const [ paginatedData, totalPages ] = usePagination(searchResults.residents || characters.residents, pageNumber, itemsPerPage);
+
+  const charactersToShow = searchResults.residents ? searchResults : characters;
+
+  const handleError = (message) => {
+    setErrorMessage(message);
+    setModal(true);
+  };
+
   return (
     <div className="App">
       {loading && <Loader/>}
@@ -51,59 +45,32 @@ function App() {
       <div className='container_logo'>
         <img src="/logo.svg" alt="logo image"/>
         <Search 
-          setSearch={SetFetchedData} 
-          modal = {()=> setModal(!modal)}
+          setSearch={setSearchResults} 
+          modal={() => handleError("Por favor ingrese un nombre de ubicación válido")}
           load = {setLoading} 
         />
       </div>
 
-
-      <ul>
-      <Location data = {fetchedData}/>
-      </ul>
-
+      <Location data = {charactersToShow}/> 
 
     <div className="cardContainer">
-      {fetchedData.residents?.slice(startIndex, endIndex).map((residentUrl) => (
-      <ResidentInfo 
-      key={residentUrl} 
-      url = {residentUrl}
-      />
-      ))}
-    </div>
-
-    <div className={modal ? "container__modal" : "close__modal"}>
-      <div className="modal">
-          <div className='modalImg'>
-            <img src="/logomodal.svg" alt="warning image" />
-          </div>
-          <p>Por favor ingrese un nombre de ubicación válido</p>
-          <button className='custom-btn btn-1' 
-            onClick={() => setModal(!modal)}>
-            Cerrar
-          </button>
+        {paginatedData?.map((residentUrl) => (
+          <ResidentInfo key={residentUrl} url={residentUrl} />
+        ))}
       </div>
-    </div>
 
-          <div className="pagination">
-            <button 
-                disabled={pageNumber === 1} 
-                onClick={() => setPageNumber(pageNumber - 1)}
-                className="paginationItems"
+      <Modal 
+        isOpen={modal} 
+        onClose={() => setModal(!modal)} 
+        message={errorMessage}
+        imageSrc="/logomodal.svg"
+      />
 
-            >
-                Anterior
-            </button>
-            <span className="pagItems"> Página {pageNumber}</span>
-            <button 
-                disabled={fetchedData.residents?.length <= endIndex} 
-                onClick={() => setPageNumber(pageNumber + 1)}
-                className="paginationItems"
-            >
-                Siguiente
-            </button>
-        </div> 
-
+      <Pagination 
+        currentPage={pageNumber} 
+        totalPages={totalPages} 
+        onPageChange={setPageNumber} 
+      />
     </div>
   )
 }

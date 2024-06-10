@@ -1,19 +1,15 @@
 
-const Location = ({data}) => {
+const Location = ({ data }) => {
 
     return (
-
-        <div className="location_cont">
-
-                <li>Nombre: <br/> {data.name}</li>
-                <li>Tipo: <br/> {data.type}</li>
-                <li>Dimensión: <br/> {data.dimension}</li>
-                <li>Poblacion: <br/>{data.residents?.length}</li>
-            
-        </div> 
-
+        <ul className="location_cont">
+          <li>Nombre: <br/> {data.name}</li>
+          <li>Tipo: <br/> {data.type}</li>
+          <li>Dimensión: <br/> {data.dimension}</li>
+          <li>Poblacion: <br/>{data.residents?.length}</li>
+        </ul>
     );
 };
     
-    export default Location;
+export default Location;
     
